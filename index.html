@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Palaunet | Serveis integrals de neteja i manteniment</title>
+  <meta name="description" content="Palaunet ofereix serveis professionals de neteja i manteniment integral per a empreses, comunitats, oficines, locals, pàrquings i particulars." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@500;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary: #21409a;
+      --primary-dark: #102a78;
+      --primary-soft: #eaf0fb;
+      --accent: #7135a2;
+      --accent-dark: #5b238b;
+      --sky: #7f9fd3;
+      --ink: #17264b;
+      --muted: #64748b;
+      --line: #dbe3f4;
+      --light: #f6f8fd;
+      --white: #ffffff;
+      --shadow: 0 24px 60px rgba(16, 42, 120, 0.14);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: "Roboto", Arial, sans-serif;
+      color: var(--ink);
+      background: var(--white);
+      line-height: 1.65;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font: inherit; }
+
+    .container {
+      width: min(1200px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      background: var(--primary-dark);
+      color: rgba(255, 255, 255, 0.88);
+      font-size: 14px;
+    }
+
+    .topbar-inner {
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .topbar-note {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+    }
+
+    .topbar-note i,
+    .topbar-list i { color: var(--sky); }
+
+    .topbar-note strong { color: var(--white); }
+
+    .topbar-list {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 22px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .topbar-list a,
+    .topbar-list span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: 0 12px 34px rgba(16, 42, 120, 0.08);
+    }
+
+    .nav {
+      min-height: 92px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .brand {
+      width: 205px;
+      flex: 0 0 auto;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-family: "Fira Sans", sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: capitalize;
+    }
+
+    .nav-menu a {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      min-height: 92px;
+      color: var(--ink);
+    }
+
+    .nav-menu a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 25px;
+      height: 3px;
+      border-radius: 99px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.2s ease;
+    }
+
+    .nav-menu a:hover::after,
+    .nav-menu a.active::after { transform: scaleX(1); }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex: 0 0 auto;
+    }
+
+    .lang-switch {
+      display: inline-flex;
+      gap: 3px;
+      padding: 5px;
+      border-radius: 999px;
+      background: var(--primary-soft);
+    }
+
+    .lang-switch button {
+      min-width: 46px;
+      height: 34px;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--primary);
+      font-family: "Fira Sans", sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .lang-switch button.active {
+      background: var(--primary);
+      color: var(--white);
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 46px;
+      height: 46px;
+      border: 0;
+      border-radius: 50%;
+      background: var(--primary);
+      color: var(--white);
+      cursor: pointer;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      min-height: 56px;
+      padding: 15px 26px;
+      border: 0;
+      border-radius: 999px;
+      font-family: "Fira Sans", sans-serif;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--accent); color: var(--white); box-shadow: 0 16px 30px rgba(113, 53, 162, 0.25); }
+    .btn-secondary { background: var(--primary); color: var(--white); box-shadow: 0 16px 30px rgba(33, 64, 154, 0.24); }
+    .btn-white { background: var(--white); color: var(--primary); }
+    .btn-link { min-height: auto; padding: 0; color: var(--accent); background: transparent; border-radius: 0; }
+
+    .hero {
+      position: relative;
+      min-height: 760px;
+      overflow: hidden;
+      color: var(--white);
+      background:
+        linear-gradient(90deg, rgba(16, 42, 120, 0.96), rgba(33, 64, 154, 0.78), rgba(33, 64, 154, 0.25)),
+        url("https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?auto=format&fit=crop&w=1900&q=80") center/cover;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -110px;
+      bottom: -120px;
+      width: 520px;
+      height: 520px;
+      border-radius: 50%;
+      background: rgba(127, 159, 211, 0.18);
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      min-height: 760px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 420px;
+      align-items: center;
+      gap: 72px;
+      padding: 82px 0;
+    }
+
+    .hero-kicker,
+    .section-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 14px;
+      font-family: "Fira Sans", sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--sky);
+    }
+
+    .hero-kicker::before,
+    .section-kicker::before {
+      content: "";
+      width: 38px;
+      height: 3px;
+      border-radius: 999px;
+      background: currentColor;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    .hero h1 {
+      max-width: 780px;
+      margin-bottom: 24px;
+      font-family: "Fira Sans", sans-serif;
+      font-size: clamp(46px, 6vw, 78px);
+      line-height: 1.02;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .hero h1 span { color: #d9c7ef; }
+
+    .hero-text {
+      max-width: 650px;
+      margin-bottom: 34px;
+      font-size: 19px;
+      color: rgba(255, 255, 255, 0.86);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+
+    .hero-phone {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      color: var(--white);
+      font-weight: 700;
+    }
+
+    .hero-phone i {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.16);
+      color: var(--sky);
+    }
+
+    .hero-badges {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      max-width: 720px;
+    }
+
+    .hero-badge {
+      padding: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-badge strong {
+      display: block;
+      font-family: "Fira Sans", sans-serif;
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    .hero-badge span {
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 14px;
+    }
+
+    .contact-card {
+      border-radius: 22px;
+      overflow: hidden;
+      background: var(--white);
+      box-shadow: var(--shadow);
+      color: var(--ink);
+    }
+
+    .contact-card-head {
+      padding: 30px 32px;
+      background:
+        linear-gradient(135deg, rgba(113, 53, 162, 0.92), rgba(33, 64, 154, 0.88)),
+        url("https://images.unsplash.com/photo-1563453392212-326f5e854473?auto=format&fit=crop&w=900&q=80") center/cover;
+      color: var(--white);
+    }
+
+    .contact-card-head h2 {
+      margin: 0;
+      font-family: "Fira Sans", sans-serif;
+      font-size: 28px;
+      line-height: 1.18;
+    }
+
+    .contact-card-body {
+      padding: 30px 32px 34px;
+    }
+
+    .form-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      min-height: 52px;
+      padding: 0 16px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      outline: 0;
+      color: var(--ink);
+      background: var(--light);
+    }
+
+    .field textarea {
+      min-height: 96px;
+      padding-top: 14px;
+      resize: vertical;
+    }
+
+    .contact-card .btn { width: 100%; margin-top: 4px; }
+
+    section { padding: 112px 0; }
+
+    .section-head {
+      max-width: 760px;
+      margin-bottom: 48px;
+    }
+
+    .section-head.center {
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+
+    .section-head.center .section-kicker { justify-content: center; }
+
+    .section-title {
+      margin-bottom: 16px;
+      font-family: "Fira Sans", sans-serif;
+      font-size: clamp(32px, 4.4vw, 52px);
+      line-height: 1.12;
+      font-weight: 800;
+      color: var(--primary-dark);
+    }
+
+    .section-title span { color: var(--accent); }
+    .section-desc { margin-bottom: 0; color: var(--muted); font-size: 17px; }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      gap: 70px;
+      align-items: center;
+    }
+
+    .image-box {
+      position: relative;
+      min-height: 600px;
+    }
+
+    .image-box-main {
+      position: absolute;
+      inset: 0 78px 92px 0;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .image-box-small {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 58%;
+      border: 14px solid var(--white);
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .image-box img { width: 100%; height: 100%; object-fit: cover; }
+
+    .rating-badge {
+      position: absolute;
+      left: 28px;
+      bottom: 46px;
+      width: 174px;
+      padding: 26px 18px;
+      border-radius: 20px;
+      background: var(--accent);
+      color: var(--white);
+      box-shadow: 0 18px 40px rgba(113, 53, 162, 0.28);
+    }
+
+    .rating-badge strong {
+      display: block;
+      font-family: "Fira Sans", sans-serif;
+      font-size: 44px;
+      line-height: 1;
+    }
+
+    .rating-badge span { font-size: 14px; color: rgba(255, 255, 255, 0.82); }
+
+    .about-copy p { color: var(--muted); }
+
+    .check-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px 20px;
+      margin: 28px 0 34px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .check-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .check-list i {
+      margin-top: 5px;
+      color: var(--accent);
+    }
+
+    .services {
+      background: var(--light);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 30px;
+    }
+
+    .service-card {
+      position: relative;
+      border-radius: 22px;
+      overflow: hidden;
+      background: var(--white);
+      box-shadow: 0 14px 34px rgba(16, 42, 120, 0.08);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow);
+    }
+
+    .service-media {
+      height: 190px;
+      overflow: hidden;
+      background: var(--primary-soft);
+    }
+
+    .service-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .service-body {
+      position: relative;
+      padding: 42px 30px 32px;
+    }
+
+    .service-icon {
+      position: absolute;
+      top: -36px;
+      left: 30px;
+      width: 72px;
+      height: 72px;
+      display: grid;
+      place-items: center;
+      border: 8px solid var(--white);
+      border-radius: 50%;
+      background: var(--primary);
+      color: var(--white);
+      font-size: 26px;
+      box-shadow: 0 14px 28px rgba(33, 64, 154, 0.22);
+    }
+
+    .service-card h3 {
+      margin-bottom: 12px;
+      font-family: "Fira Sans", sans-serif;
+      font-size: 23px;
+      color: var(--primary-dark);
+    }
+
+    .service-card p { color: var(--muted); }
+
+    .stats {
+      padding: 0;
+      background: var(--light);
+    }
+
+    .stats-band {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      border-radius: 24px;
+      overflow: hidden;
+      background: var(--primary-dark);
+      color: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .stat-item {
+      padding: 38px 30px;
+      border-right: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .stat-item:last-child { border-right: 0; }
+
+    .stat-item i {
+      margin-bottom: 18px;
+      color: var(--sky);
+      font-size: 30px;
+    }
+
+    .stat-item strong {
+      display: block;
+      font-family: "Fira Sans", sans-serif;
+      font-size: 42px;
+      line-height: 1;
+    }
+
+    .stat-item span { color: rgba(255, 255, 255, 0.72); }
+
+    .process {
+      background: var(--white);
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 24px;
+      counter-reset: process;
+    }
+
+    .process-card {
+      position: relative;
+      padding: 36px 28px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: var(--white);
+      box-shadow: 0 12px 28px rgba(16, 42, 120, 0.06);
+    }
+
+    .process-card::before {
+      counter-increment: process;
+      content: "0" counter(process);
+      display: inline-flex;
+      margin-bottom: 22px;
+      font-family: "Fira Sans", sans-serif;
+      font-size: 34px;
+      font-weight: 800;
+      color: rgba(33, 64, 154, 0.18);
+    }
+
+    .process-card h3 {
+      margin-bottom: 10px;
+      font-family: "Fira Sans", sans-serif;
+      color: var(--primary-dark);
+    }
+
+    .process-card p { margin-bottom: 0; color: var(--muted); }
+
+    .products {
+      position: relative;
+      color: var(--white);
+      background:
+        linear-gradient(90deg, rgba(16, 42, 120, 0.94), rgba(33, 64, 154, 0.82)),
+        url("https://images.unsplash.com/photo-1585421514738-01798e348b17?auto=format&fit=crop&w=1800&q=80") center/cover;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .products .section-title,
+    .products .section-desc { color: var(--white); }
+
+    .product-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin: 34px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .product-list li {
+      display: flex;
+      gap: 12px;
+      padding: 16px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.1);
+      font-weight: 700;
+    }
+
+    .product-list i { color: #d9c7ef; margin-top: 5px; }
+
+    .contact-strip {
+      margin-top: -58px;
+      position: relative;
+      z-index: 3;
+      padding: 0;
+    }
+
+    .contact-strip-box {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 30px;
+      padding: 42px 46px;
+      border-radius: 24px;
+      background: var(--accent);
+      color: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .contact-strip h2 {
+      margin-bottom: 6px;
+      font-family: "Fira Sans", sans-serif;
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.12;
+    }
+
+    .contact-strip p { margin: 0; color: rgba(255, 255, 255, 0.82); }
+
+    .footer {
+      margin-top: 100px;
+      color: rgba(255, 255, 255, 0.76);
+      background: #0d1f5c;
+    }
+
+    .footer-primary {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr 0.85fr 1fr;
+      gap: 44px;
+      padding: 76px 0;
+    }
+
+    .footer-logo {
+      width: 190px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: var(--white);
+      margin-bottom: 22px;
+    }
+
+    .footer h3 {
+      margin-bottom: 20px;
+      font-family: "Fira Sans", sans-serif;
+      color: var(--white);
+      font-size: 20px;
+    }
+
+    .footer ul { margin: 0; padding: 0; list-style: none; }
+    .footer li { margin-bottom: 10px; }
+    .footer a:hover { color: var(--white); }
+    .footer i { color: var(--sky); margin-right: 8px; }
+
+    .footer-card {
+      padding: 28px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .footer-secondary {
+      padding: 22px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      font-size: 14px;
+    }
+
+    .footer-secondary .container {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 1080px) {
+      .topbar-inner { justify-content: center; text-align: center; }
+      .topbar-note { display: none; }
+      .topbar-list { justify-content: center; }
+      .menu-toggle { display: inline-grid; place-items: center; }
+      .nav { min-height: 78px; }
+      .brand { width: 178px; }
+      .nav-menu {
+        position: absolute;
+        top: 78px;
+        left: 20px;
+        right: 20px;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 12px;
+        border-radius: 18px;
+        background: var(--white);
+        box-shadow: var(--shadow);
+      }
+      .nav-menu.open { display: flex; }
+      .nav-menu a { min-height: auto; padding: 13px 12px; }
+      .nav-menu a::after { display: none; }
+      .nav-actions .btn { display: none; }
+      .hero-inner,
+      .about-grid,
+      .products-grid,
+      .contact-strip-box {
+        grid-template-columns: 1fr;
+      }
+      .hero-inner { gap: 42px; }
+      .services-grid,
+      .process-grid,
+      .footer-primary {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .stats-band { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 680px) {
+      .container { width: min(100% - 28px, 1200px); }
+      .topbar-list { gap: 10px 16px; }
+      .hero, .hero-inner { min-height: auto; }
+      .hero-inner { padding: 64px 0 82px; }
+      .hero h1 { font-size: 42px; }
+      .hero-badges,
+      .services-grid,
+      .process-grid,
+      .stats-band,
+      .footer-primary,
+      .check-list,
+      .product-list {
+        grid-template-columns: 1fr;
+      }
+      section { padding: 76px 0; }
+      .contact-card-head,
+      .contact-card-body,
+      .contact-strip-box { padding: 28px; }
+      .image-box { min-height: auto; }
+      .image-box-main,
+      .image-box-small {
+        position: relative;
+        inset: auto;
+        width: 100%;
+        height: 310px;
+        border: 0;
+        margin-bottom: 16px;
+      }
+      .rating-badge {
+        position: relative;
+        left: auto;
+        bottom: auto;
+        width: 100%;
+      }
+      .stat-item { border-right: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.12); }
+      .footer { margin-top: 70px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <div class="topbar-note">
+        <i class="fa-solid fa-circle-info"></i>
+        <span data-i18n="topbar_note"><strong>Palaunet</strong> cuida els teus espais amb neteja professional.</span>
+      </div>
+      <ul class="topbar-list">
+        <li><a href="tel:630162194"><i class="fa-solid fa-phone"></i> 630 16 21 94</a></li>
+        <li><a href="mailto:info@palaunet.cat"><i class="fa-solid fa-envelope"></i> info@palaunet.cat</a></li>
+        <li><span><i class="fa-solid fa-clock"></i> <span data-i18n="hours">Dl-Dv: 8:00 - 19:00</span></span></li>
+      </ul>
+    </div>
+  </div>
+
+  <header class="header">
+    <div class="container nav">
+      <a href="#" class="brand" aria-label="Palaunet">
+        <img src="Palaunet.png" alt="Logo de Palaunet" data-i18n-attr="alt:logo_alt" />
+      </a>
+      <ul class="nav-menu" id="navMenu">
+        <li><a class="active" href="#" data-i18n="nav_home">Inici</a></li>
+        <li><a href="#empresa" data-i18n="nav_company">Empresa</a></li>
+        <li><a href="#servicios" data-i18n="nav_services">Serveis</a></li>
+        <li><a href="#metodo" data-i18n="nav_method">Mètode</a></li>
+        <li><a href="#productos" data-i18n="nav_products">Productes</a></li>
+        <li><a href="#contacto" data-i18n="nav_contact">Contacte</a></li>
+      </ul>
+      <div class="nav-actions">
+        <div class="lang-switch" aria-label="Selector d'idioma" data-i18n-attr="aria-label:language_selector">
+          <button type="button" data-lang="ca" class="active" aria-pressed="true">CAT</button>
+          <button type="button" data-lang="es" aria-pressed="false">CAST</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <a class="btn btn-primary" href="#contacto" data-i18n="contact_us">Contacta amb nosaltres</a>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Obrir menú" data-i18n-attr="aria-label:open_menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div>
+          <p class="hero-kicker" data-i18n="hero_kicker">Serveis professionals de neteja</p>
+          <h1><span data-i18n="hero_title_1">Neteja integral</span> <span data-i18n="hero_title_2">amb un estàndard constant de qualitat.</span></h1>
+          <p class="hero-text" data-i18n="hero_text">Solucions per a empreses, comunitats, oficines, locals, pàrquings i particulars. Personal qualificat, horaris adaptats i seguiment del servei.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contacto"><span data-i18n="contact_us">Contacta amb nosaltres</span> <i class="fa-solid fa-arrow-right"></i></a>
+            <a class="hero-phone" href="tel:630162194"><i class="fa-solid fa-phone"></i><span>630 16 21 94</span></a>
+          </div>
+          <div class="hero-badges">
+            <div class="hero-badge"><strong>250+</strong><span data-i18n="stat_clients">Clients satisfets</span></div>
+            <div class="hero-badge"><strong>10+</strong><span data-i18n="stat_years">Anys d'experiència</span></div>
+            <div class="hero-badge"><strong>30+</strong><span data-i18n="stat_team">Professionals qualificats</span></div>
+          </div>
+        </div>
+
+        <aside class="contact-card" id="contacto">
+          <div class="contact-card-head">
+            <h2 data-i18n="form_title">Explica'ns què necessites</h2>
+          </div>
+          <div class="contact-card-body">
+            <form class="form-grid" action="mailto:info@palaunet.cat" method="post" enctype="text/plain">
+              <div class="field">
+                <label for="service" data-i18n="form_service">Servei</label>
+                <select id="service" name="servei">
+                  <option data-i18n="service_offices">Oficines i empreses</option>
+                  <option data-i18n="service_communities">Comunitats</option>
+                  <option data-i18n="service_industrial">Naus industrials</option>
+                  <option data-i18n="service_shops">Locals comercials</option>
+                  <option data-i18n="service_homes">Pisos i cases</option>
+                  <option data-i18n="service_parking">Pàrquings</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="name" data-i18n="form_name">Nom</label>
+                <input id="name" name="nom" type="text" data-i18n-attr="placeholder:form_name_placeholder" placeholder="El teu nom" />
+              </div>
+              <div class="field">
+                <label for="phone" data-i18n="form_phone">Telèfon</label>
+                <input id="phone" name="telefon" type="tel" placeholder="630 16 21 94" />
+              </div>
+              <div class="field">
+                <label for="message" data-i18n="form_message">Missatge</label>
+                <textarea id="message" name="missatge" data-i18n-attr="placeholder:form_message_placeholder" placeholder="Horaris, espai i freqüència aproximada"></textarea>
+              </div>
+              <button class="btn btn-secondary" type="submit"><span data-i18n="send_message">Enviar missatge</span> <i class="fa-solid fa-paper-plane"></i></button>
+            </form>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="about" id="empresa">
+      <div class="container about-grid">
+        <div class="image-box">
+          <div class="image-box-main">
+            <img src="https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?auto=format&fit=crop&w=1100&q=80" alt="Equip professional de neteja" data-i18n-attr="alt:about_img_alt" />
+          </div>
+          <div class="image-box-small">
+            <img src="https://images.unsplash.com/photo-1563453392212-326f5e854473?auto=format&fit=crop&w=900&q=80" alt="Material professional de neteja" data-i18n-attr="alt:material_img_alt" />
+          </div>
+          <div class="rating-badge"><strong>10+</strong><span data-i18n="years_experience">anys d'experiència</span></div>
+        </div>
+
+        <div class="about-copy">
+          <div class="section-head">
+            <p class="section-kicker" data-i18n="about_kicker">El nom de confiança en neteja</p>
+            <h2 class="section-title" data-i18n="about_title">Professionals de neteja per mantenir cada espai a punt</h2>
+            <p class="section-desc" data-i18n="about_desc">A Palaunet estudiem cada servei de manera personalitzada per definir productes, maquinària, freqüència i equip. L'objectiu és donar un resultat fiable amb un preu competitiu.</p>
+          </div>
+          <p data-i18n="about_text">La supervisió constant, la formació del personal i la investigació en nous productes ens permeten adaptar-nos a cada centre i mantenir una qualitat estable.</p>
+          <ul class="check-list">
+            <li><i class="fa-solid fa-check"></i><span data-i18n="feature_supervision">Supervisió constant</span></li>
+            <li><i class="fa-solid fa-check"></i><span data-i18n="feature_staff">Personal uniformat</span></li>
+            <li><i class="fa-solid fa-check"></i><span data-i18n="feature_schedule">Horaris adaptats</span></li>
+            <li><i class="fa-solid fa-check"></i><span data-i18n="feature_machinery">Maquinària professional</span></li>
+            <li><i class="fa-solid fa-check"></i><span data-i18n="feature_products">Productes de qualitat</span></li>
+            <li><i class="fa-solid fa-check"></i><span data-i18n="feature_insured">Servei assegurat</span></li>
+          </ul>
+          <a class="btn btn-secondary" href="#servicios"><span data-i18n="view_services">Veure serveis</span> <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="services" id="servicios">
+      <div class="container">
+        <div class="section-head center">
+          <p class="section-kicker" data-i18n="services_kicker">Què fem</p>
+          <h2 class="section-title" data-i18n="services_title">Serveis pensats per a cada tipus d'espai</h2>
+          <p class="section-desc" data-i18n="services_desc">Plans continus o serveis puntuals, ajustant horaris, productes, maquinaria i freqüència a les necessitats reals.</p>
+        </div>
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-media"><img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80" alt="" /></div>
+            <div class="service-body">
+              <div class="service-icon"><i class="fa-solid fa-briefcase"></i></div>
+              <h3 data-i18n="service_offices">Oficines i empreses</h3>
+              <p data-i18n="service_offices_desc">Neteja diària o periòdica d'entorns de treball per mantenir una imatge professional, ordenada i higiènica.</p>
+              <a class="btn btn-link" href="#contacto"><span data-i18n="contact">Contactar</span> <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </article>
+          <article class="service-card">
+            <div class="service-media"><img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=900&q=80" alt="" /></div>
+            <div class="service-body">
+              <div class="service-icon"><i class="fa-solid fa-people-roof"></i></div>
+              <h3 data-i18n="service_communities">Comunitats</h3>
+              <p data-i18n="service_communities_desc">Manteniment d'escales, ascensors, replans, vidres i zones comunes amb supervisió constant.</p>
+              <a class="btn btn-link" href="#contacto"><span data-i18n="contact">Contactar</span> <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </article>
+          <article class="service-card">
+            <div class="service-media"><img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=900&q=80" alt="" /></div>
+            <div class="service-body">
+              <div class="service-icon"><i class="fa-solid fa-industry"></i></div>
+              <h3 data-i18n="service_industrial">Naus industrials</h3>
+              <p data-i18n="service_industrial_desc">Neteja de grans superfícies amb maquinària professional i productes adequats per a cada paviment.</p>
+              <a class="btn btn-link" href="#contacto"><span data-i18n="contact">Contactar</span> <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </article>
+          <article class="service-card">
+            <div class="service-media"><img src="https://images.unsplash.com/photo-1604719312566-8912e9227c6a?auto=format&fit=crop&w=900&q=80" alt="" /></div>
+            <div class="service-body">
+              <div class="service-icon"><i class="fa-solid fa-store"></i></div>
+              <h3 data-i18n="service_shops">Locals comercials</h3>
+              <p data-i18n="service_shops_desc">Serveis per a comerços, restaurants, centres d'oci i espais d'atenció al públic.</p>
+              <a class="btn btn-link" href="#contacto"><span data-i18n="contact">Contactar</span> <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </article>
+          <article class="service-card">
+            <div class="service-media"><img src="https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=900&q=80" alt="" /></div>
+            <div class="service-body">
+              <div class="service-icon"><i class="fa-solid fa-house"></i></div>
+              <h3 data-i18n="service_homes">Pisos i cases</h3>
+              <p data-i18n="service_homes_desc">Neteja domèstica continuada o esporàdica, amb horaris flexibles i un tracte proper.</p>
+              <a class="btn btn-link" href="#contacto"><span data-i18n="contact">Contactar</span> <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </article>
+          <article class="service-card">
+            <div class="service-media"><img src="https://images.unsplash.com/photo-1506521781263-d8422e82f27a?auto=format&fit=crop&w=900&q=80" alt="" /></div>
+            <div class="service-body">
+              <div class="service-icon"><i class="fa-solid fa-square-parking"></i></div>
+              <h3 data-i18n="service_parking">Pàrquings</h3>
+              <p data-i18n="service_parking_desc">Neteja especialitzada de garatges i pàrquings, incloent taques, pols, accessos i zones de pas.</p>
+              <a class="btn btn-link" href="#contacto"><span data-i18n="contact">Contactar</span> <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats">
+      <div class="container">
+        <div class="stats-band">
+          <div class="stat-item"><i class="fa-solid fa-building"></i><strong>250+</strong><span data-i18n="stat_clients">Clients satisfets</span></div>
+          <div class="stat-item"><i class="fa-solid fa-calendar-check"></i><strong>10+</strong><span data-i18n="stat_years">Anys d'experiència</span></div>
+          <div class="stat-item"><i class="fa-solid fa-users"></i><strong>30+</strong><span data-i18n="stat_team">Professionals qualificats</span></div>
+          <div class="stat-item"><i class="fa-solid fa-shield-heart"></i><strong>RC</strong><span data-i18n="stat_insurance">Assegurança de responsabilitat civil</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="process" id="metodo">
+      <div class="container">
+        <div class="section-head center">
+          <p class="section-kicker" data-i18n="method_kicker">Com treballem</p>
+          <h2 class="section-title" data-i18n="method_title">Un servei clar des del primer dia</h2>
+          <p class="section-desc" data-i18n="method_desc">Sabem què es farà, quan es farà i amb quins recursos, sense complicacions innecessàries.</p>
+        </div>
+        <div class="process-grid">
+          <article class="process-card"><h3 data-i18n="step_1_title">Escoltem la necessitat</h3><p data-i18n="step_1_desc">Revisem l'espai, la freqüència, els horaris i els punts crítics del servei.</p></article>
+          <article class="process-card"><h3 data-i18n="step_2_title">Definim el pla</h3><p data-i18n="step_2_desc">Proposem personal, productes, maquinària i tasques concretes per a cada zona.</p></article>
+          <article class="process-card"><h3 data-i18n="step_3_title">Executem el servei</h3><p data-i18n="step_3_desc">Treballem amb equip format, uniforme d'empresa i materials adequats.</p></article>
+          <article class="process-card"><h3 data-i18n="step_4_title">Supervisem resultats</h3><p data-i18n="step_4_desc">Fem seguiment per mantenir la qualitat i ajustar el que calgui.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="products" id="productos">
+      <div class="container products-grid">
+        <div class="section-head">
+          <p class="section-kicker" data-i18n="products_kicker">Productes professionals</p>
+          <h2 class="section-title" data-i18n="products_title">Tot el necessari per mantenir els teus espais nets</h2>
+          <p class="section-desc" data-i18n="products_desc">A més de la neteja integral, Palaunet pot subministrar productes i consumibles per a oficines, comunitats, locals i centres de treball.</p>
+        </div>
+        <ul class="product-list">
+          <li><i class="fa-solid fa-leaf"></i><span data-i18n="product_1">Ambientadors i desodoritzadors</span></li>
+          <li><i class="fa-solid fa-leaf"></i><span data-i18n="product_2">Paper higiènic i tovalloles de mans</span></li>
+          <li><i class="fa-solid fa-leaf"></i><span data-i18n="product_3">Productes de desinfecció</span></li>
+          <li><i class="fa-solid fa-leaf"></i><span data-i18n="product_4">Netejadors industrials</span></li>
+          <li><i class="fa-solid fa-leaf"></i><span data-i18n="product_5">Material i maquinària especialitzada</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="contact-strip">
+      <div class="container">
+        <div class="contact-strip-box">
+          <div>
+            <h2 data-i18n="cta_title">Necessites un servei de neteja professional?</h2>
+            <p data-i18n="cta_desc">Explica'ns què necessites i prepararem una proposta adaptada al teu espai, horaris i freqüència.</p>
+          </div>
+          <a class="btn btn-white" href="mailto:info@palaunet.cat"><span data-i18n="contact_us">Contacta amb nosaltres</span> <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-primary">
+      <div>
+        <div class="footer-logo"><img src="Palaunet.png" alt="Logo de Palaunet" data-i18n-attr="alt:logo_alt" /></div>
+        <p data-i18n="footer_about">Serveis integrals de neteja i manteniment per a empreses, comunitats i particulars. Professionalitat, confiança i atenció propera.</p>
+      </div>
+      <div>
+        <h3 data-i18n="footer_company">Empresa</h3>
+        <ul>
+          <li><a href="#empresa" data-i18n="about_us">Qui som</a></li>
+          <li><a href="#metodo" data-i18n="nav_method">Mètode</a></li>
+          <li><a href="#productos" data-i18n="nav_products">Productes</a></li>
+          <li><a href="#contacto" data-i18n="nav_contact">Contacte</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 data-i18n="nav_services">Serveis</h3>
+        <ul>
+          <li><a href="#servicios" data-i18n="service_offices">Oficines i empreses</a></li>
+          <li><a href="#servicios" data-i18n="service_communities">Comunitats</a></li>
+          <li><a href="#servicios" data-i18n="service_industrial">Naus industrials</a></li>
+          <li><a href="#servicios" data-i18n="service_shops">Locals comercials</a></li>
+          <li><a href="#servicios" data-i18n="service_homes">Pisos i cases</a></li>
+        </ul>
+      </div>
+      <div class="footer-card">
+        <h3 data-i18n="quick_contact">Contacte ràpid</h3>
+        <ul>
+          <li><i class="fa-solid fa-phone"></i><a href="tel:630162194">630 16 21 94</a></li>
+          <li><i class="fa-solid fa-envelope"></i><a href="mailto:info@palaunet.cat">info@palaunet.cat</a></li>
+          <li><i class="fa-solid fa-clock"></i><span data-i18n="hours">Dl-Dv: 8:00 - 19:00</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-secondary">
+      <div class="container">
+        <span data-i18n="copyright">© 2026 Palaunet. Tots els drets reservats.</span>
+        <span data-i18n="footer_tagline">Neteja i serveis professionals</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const translations = {
+      ca: {
+        topbar_note: "<strong>Palaunet</strong> cuida els teus espais amb neteja professional.",
+        hours: "Dl-Dv: 8:00 - 19:00",
+        nav_home: "Inici",
+        nav_company: "Empresa",
+        nav_services: "Serveis",
+        nav_method: "Mètode",
+        nav_products: "Productes",
+        nav_contact: "Contacte",
+        contact_us: "Contacta amb nosaltres",
+        hero_kicker: "Serveis professionals de neteja",
+        hero_title_1: "Neteja integral",
+        hero_title_2: "amb un estàndard constant de qualitat.",
+        hero_text: "Solucions per a empreses, comunitats, oficines, locals, pàrquings i particulars. Personal qualificat, horaris adaptats i seguiment del servei.",
+        stat_clients: "Clients satisfets",
+        stat_years: "Anys d'experiència",
+        stat_team: "Professionals qualificats",
+        stat_insurance: "Assegurança de responsabilitat civil",
+        form_title: "Explica'ns què necessites",
+        form_service: "Servei",
+        form_name: "Nom",
+        form_name_placeholder: "El teu nom",
+        form_phone: "Telèfon",
+        form_message: "Missatge",
+        form_message_placeholder: "Horaris, espai i freqüència aproximada",
+        send_message: "Enviar missatge",
+        about_kicker: "El nom de confiança en neteja",
+        about_title: "Professionals de neteja per mantenir cada espai a punt",
+        about_desc: "A Palaunet estudiem cada servei de manera personalitzada per definir productes, maquinària, freqüència i equip. L'objectiu és donar un resultat fiable amb un preu competitiu.",
+        about_text: "La supervisió constant, la formació del personal i la investigació en nous productes ens permeten adaptar-nos a cada centre i mantenir una qualitat estable.",
+        feature_supervision: "Supervisió constant",
+        feature_staff: "Personal uniformat",
+        feature_schedule: "Horaris adaptats",
+        feature_machinery: "Maquinària professional",
+        feature_products: "Productes de qualitat",
+        feature_insured: "Servei assegurat",
+        years_experience: "anys d'experiència",
+        view_services: "Veure serveis",
+        services_kicker: "Què fem",
+        services_title: "Serveis pensats per a cada tipus d'espai",
+        services_desc: "Plans continus o serveis puntuals, ajustant horaris, productes, maquinaria i freqüència a les necessitats reals.",
+        service_offices: "Oficines i empreses",
+        service_offices_desc: "Neteja diària o periòdica d'entorns de treball per mantenir una imatge professional, ordenada i higiènica.",
+        service_communities: "Comunitats",
+        service_communities_desc: "Manteniment d'escales, ascensors, replans, vidres i zones comunes amb supervisió constant.",
+        service_industrial: "Naus industrials",
+        service_industrial_desc: "Neteja de grans superfícies amb maquinària professional i productes adequats per a cada paviment.",
+        service_shops: "Locals comercials",
+        service_shops_desc: "Serveis per a comerços, restaurants, centres d'oci i espais d'atenció al públic.",
+        service_homes: "Pisos i cases",
+        service_homes_desc: "Neteja domèstica continuada o esporàdica, amb horaris flexibles i un tracte proper.",
+        service_parking: "Pàrquings",
+        service_parking_desc: "Neteja especialitzada de garatges i pàrquings, incloent taques, pols, accessos i zones de pas.",
+        contact: "Contactar",
+        method_kicker: "Com treballem",
+        method_title: "Un servei clar des del primer dia",
+        method_desc: "Sabem què es farà, quan es farà i amb quins recursos, sense complicacions innecessàries.",
+        step_1_title: "Escoltem la necessitat",
+        step_1_desc: "Revisem l'espai, la freqüència, els horaris i els punts crítics del servei.",
+        step_2_title: "Definim el pla",
+        step_2_desc: "Proposem personal, productes, maquinària i tasques concretes per a cada zona.",
+        step_3_title: "Executem el servei",
+        step_3_desc: "Treballem amb equip format, uniforme d'empresa i materials adequats.",
+        step_4_title: "Supervisem resultats",
+        step_4_desc: "Fem seguiment per mantenir la qualitat i ajustar el que calgui.",
+        products_kicker: "Productes professionals",
+        products_title: "Tot el necessari per mantenir els teus espais nets",
+        products_desc: "A més de la neteja integral, Palaunet pot subministrar productes i consumibles per a oficines, comunitats, locals i centres de treball.",
+        product_1: "Ambientadors i desodoritzadors",
+        product_2: "Paper higiènic i tovalloles de mans",
+        product_3: "Productes de desinfecció",
+        product_4: "Netejadors industrials",
+        product_5: "Material i maquinària especialitzada",
+        cta_title: "Necessites un servei de neteja professional?",
+        cta_desc: "Explica'ns què necessites i prepararem una proposta adaptada al teu espai, horaris i freqüència.",
+        footer_about: "Serveis integrals de neteja i manteniment per a empreses, comunitats i particulars. Professionalitat, confiança i atenció propera.",
+        footer_company: "Empresa",
+        about_us: "Qui som",
+        quick_contact: "Contacte ràpid",
+        copyright: "© 2026 Palaunet. Tots els drets reservats.",
+        footer_tagline: "Neteja i serveis professionals",
+        logo_alt: "Logotip de Palaunet",
+        about_img_alt: "Equip professional de neteja",
+        material_img_alt: "Material professional de neteja",
+        language_selector: "Selector d'idioma",
+        open_menu: "Obrir menú",
+        close_menu: "Tancar menú"
+      },
+      es: {
+        topbar_note: "<strong>Palaunet</strong> cuida tus espacios con limpieza profesional.",
+        hours: "Lu-Vi: 8:00 - 19:00",
+        nav_home: "Inicio",
+        nav_company: "Empresa",
+        nav_services: "Servicios",
+        nav_method: "Método",
+        nav_products: "Productos",
+        nav_contact: "Contacto",
+        contact_us: "Contacta con nosotros",
+        hero_kicker: "Servicios profesionales de limpieza",
+        hero_title_1: "Limpieza integral",
+        hero_title_2: "con un estándar constante de calidad.",
+        hero_text: "Soluciones para empresas, comunidades, oficinas, locales, parkings y particulares. Personal cualificado, horarios adaptados y seguimiento del servicio.",
+        stat_clients: "Clientes satisfechos",
+        stat_years: "Años de experiencia",
+        stat_team: "Profesionales cualificados",
+        stat_insurance: "Seguro de responsabilidad civil",
+        form_title: "Cuéntanos qué necesitas",
+        form_service: "Servicio",
+        form_name: "Nombre",
+        form_name_placeholder: "Tu nombre",
+        form_phone: "Teléfono",
+        form_message: "Mensaje",
+        form_message_placeholder: "Horarios, espacio y frecuencia aproximada",
+        send_message: "Enviar mensaje",
+        about_kicker: "El nombre de confianza en limpieza",
+        about_title: "Profesionales de limpieza para mantener cada espacio a punto",
+        about_desc: "En Palaunet estudiamos cada servicio de forma personalizada para definir productos, maquinaria, frecuencia y equipo. El objetivo es dar un resultado fiable con un precio competitivo.",
+        about_text: "La supervisión constante, la formación del personal y la investigación en nuevos productos nos permiten adaptarnos a cada centro y mantener una calidad estable.",
+        feature_supervision: "Supervisión constante",
+        feature_staff: "Personal uniformado",
+        feature_schedule: "Horarios adaptados",
+        feature_machinery: "Maquinaria profesional",
+        feature_products: "Productos de calidad",
+        feature_insured: "Servicio asegurado",
+        years_experience: "años de experiencia",
+        view_services: "Ver servicios",
+        services_kicker: "Qué hacemos",
+        services_title: "Servicios pensados para cada tipo de espacio",
+        services_desc: "Planes continuos o servicios puntuales, ajustando horarios, productos, maquinaria y frecuencia a las necesidades reales.",
+        service_offices: "Oficinas y empresas",
+        service_offices_desc: "Limpieza diaria o periódica de entornos de trabajo para mantener una imagen profesional, ordenada e higiénica.",
+        service_communities: "Comunidades",
+        service_communities_desc: "Mantenimiento de escaleras, ascensores, rellanos, cristales y zonas comunes con supervisión constante.",
+        service_industrial: "Naves industriales",
+        service_industrial_desc: "Limpieza de grandes superficies con maquinaria profesional y productos adecuados para cada pavimento.",
+        service_shops: "Locales comerciales",
+        service_shops_desc: "Servicios para comercios, restaurantes, centros de ocio y espacios de atención al público.",
+        service_homes: "Pisos y casas",
+        service_homes_desc: "Limpieza doméstica continuada o esporádica, con horarios flexibles y trato cercano.",
+        service_parking: "Parkings",
+        service_parking_desc: "Limpieza especializada de garajes y parkings, incluyendo manchas, polvo, accesos y zonas de paso.",
+        contact: "Contactar",
+        method_kicker: "Cómo trabajamos",
+        method_title: "Un servicio claro desde el primer día",
+        method_desc: "Sabemos qué se hará, cuándo se hará y con qué recursos, sin complicaciones innecesarias.",
+        step_1_title: "Escuchamos la necesidad",
+        step_1_desc: "Revisamos el espacio, la frecuencia, los horarios y los puntos críticos del servicio.",
+        step_2_title: "Definimos el plan",
+        step_2_desc: "Proponemos personal, productos, maquinaria y tareas concretas para cada zona.",
+        step_3_title: "Ejecutamos el servicio",
+        step_3_desc: "Trabajamos con equipo formado, uniforme de empresa y materiales adecuados.",
+        step_4_title: "Supervisamos resultados",
+        step_4_desc: "Hacemos seguimiento para mantener la calidad y ajustar lo necesario.",
+        products_kicker: "Productos profesionales",
+        products_title: "Todo lo necesario para mantener tus espacios limpios",
+        products_desc: "Además de la limpieza integral, Palaunet puede suministrar productos y consumibles para oficinas, comunidades, locales y centros de trabajo.",
+        product_1: "Ambientadores y desodorizadores",
+        product_2: "Papel higiénico y toallas de manos",
+        product_3: "Productos de desinfección",
+        product_4: "Limpiadores industriales",
+        product_5: "Material y maquinaria especializada",
+        cta_title: "¿Necesitas un servicio de limpieza profesional?",
+        cta_desc: "Cuéntanos qué necesitas y prepararemos una propuesta adaptada a tu espacio, horarios y frecuencia.",
+        footer_about: "Servicios integrales de limpieza y mantenimiento para empresas, comunidades y particulares. Profesionalidad, confianza y atención cercana.",
+        footer_company: "Empresa",
+        about_us: "Quiénes somos",
+        quick_contact: "Contacto rápido",
+        copyright: "© 2026 Palaunet. Todos los derechos reservados.",
+        footer_tagline: "Limpieza y servicios profesionales",
+        logo_alt: "Logo de Palaunet",
+        about_img_alt: "Equipo profesional de limpieza",
+        material_img_alt: "Material profesional de limpieza",
+        language_selector: "Selector de idioma",
+        open_menu: "Abrir menú",
+        close_menu: "Cerrar menú"
+      },
+      en: {
+        topbar_note: "<strong>Palaunet</strong> cares for your spaces with professional cleaning.",
+        hours: "Mon-Fri: 8:00 - 19:00",
+        nav_home: "Home",
+        nav_company: "Company",
+        nav_services: "Services",
+        nav_method: "Method",
+        nav_products: "Products",
+        nav_contact: "Contact",
+        contact_us: "Contact us",
+        hero_kicker: "Professional cleaning services",
+        hero_title_1: "Comprehensive cleaning",
+        hero_title_2: "with a consistent quality standard.",
+        hero_text: "Solutions for companies, communities, offices, premises, car parks and homes. Qualified staff, adapted schedules and service follow-up.",
+        stat_clients: "Satisfied clients",
+        stat_years: "Years of experience",
+        stat_team: "Qualified professionals",
+        stat_insurance: "Civil liability insurance",
+        form_title: "Tell us what you need",
+        form_service: "Service",
+        form_name: "Name",
+        form_name_placeholder: "Your name",
+        form_phone: "Phone",
+        form_message: "Message",
+        form_message_placeholder: "Schedule, space and approximate frequency",
+        send_message: "Send message",
+        about_kicker: "The trusted name in cleaning",
+        about_title: "Cleaning professionals to keep every space ready",
+        about_desc: "At Palaunet we assess every service individually to define products, machinery, frequency and team. The goal is to deliver reliable results at a competitive price.",
+        about_text: "Constant supervision, staff training and research into new products allow us to adapt to each site and maintain steady quality.",
+        feature_supervision: "Constant supervision",
+        feature_staff: "Uniformed staff",
+        feature_schedule: "Adapted schedules",
+        feature_machinery: "Professional machinery",
+        feature_products: "Quality products",
+        feature_insured: "Insured service",
+        years_experience: "years of experience",
+        view_services: "View services",
+        services_kicker: "What we do",
+        services_title: "Services designed for every kind of space",
+        services_desc: "Ongoing plans or one-off services, adapting schedules, products, machinery and frequency to real needs.",
+        service_offices: "Offices and businesses",
+        service_offices_desc: "Daily or periodic workplace cleaning to keep a professional, tidy and hygienic image.",
+        service_communities: "Communities",
+        service_communities_desc: "Maintenance of stairs, lifts, landings, glass and common areas with constant supervision.",
+        service_industrial: "Industrial buildings",
+        service_industrial_desc: "Cleaning of large surfaces with professional machinery and products suited to each floor.",
+        service_shops: "Commercial premises",
+        service_shops_desc: "Services for shops, restaurants, leisure centres and public-facing spaces.",
+        service_homes: "Flats and houses",
+        service_homes_desc: "Regular or occasional home cleaning, with flexible schedules and close attention.",
+        service_parking: "Car parks",
+        service_parking_desc: "Specialised cleaning for garages and car parks, including stains, dust, access points and transit areas.",
+        contact: "Contact",
+        method_kicker: "How we work",
+        method_title: "A clear service from day one",
+        method_desc: "We define what will be done, when and with which resources, without unnecessary complications.",
+        step_1_title: "We listen to the need",
+        step_1_desc: "We review the space, frequency, schedules and critical service points.",
+        step_2_title: "We define the plan",
+        step_2_desc: "We propose staff, products, machinery and specific tasks for each area.",
+        step_3_title: "We carry out the service",
+        step_3_desc: "We work with trained teams, company uniforms and suitable materials.",
+        step_4_title: "We supervise results",
+        step_4_desc: "We follow up to maintain quality and adjust what is needed.",
+        products_kicker: "Professional products",
+        products_title: "Everything needed to keep your spaces clean",
+        products_desc: "In addition to comprehensive cleaning, Palaunet can supply products and consumables for offices, communities, premises and workplaces.",
+        product_1: "Air fresheners and deodorisers",
+        product_2: "Toilet paper and hand towels",
+        product_3: "Disinfection products",
+        product_4: "Industrial cleaners",
+        product_5: "Specialised material and machinery",
+        cta_title: "Do you need a professional cleaning service?",
+        cta_desc: "Tell us what you need and we will prepare a proposal adapted to your space, schedule and frequency.",
+        footer_about: "Comprehensive cleaning and maintenance services for companies, communities and homes. Professionalism, trust and close attention.",
+        footer_company: "Company",
+        about_us: "About us",
+        quick_contact: "Quick contact",
+        copyright: "© 2026 Palaunet. All rights reserved.",
+        footer_tagline: "Cleaning and professional services",
+        logo_alt: "Palaunet logo",
+        about_img_alt: "Professional cleaning team",
+        material_img_alt: "Professional cleaning material",
+        language_selector: "Language selector",
+        open_menu: "Open menu",
+        close_menu: "Close menu"
+      }
+    };
+
+    const navMenu = document.getElementById("navMenu");
+    const menuToggle = document.getElementById("menuToggle");
+    const langButtons = document.querySelectorAll("[data-lang]");
+
+    function setLanguage(lang) {
+      const dictionary = translations[lang] || translations.ca;
+      document.documentElement.lang = lang;
+
+      document.querySelectorAll("[data-i18n]").forEach((element) => {
+        const key = element.dataset.i18n;
+        if (dictionary[key]) element.innerHTML = dictionary[key];
+      });
+
+      document.querySelectorAll("[data-i18n-attr]").forEach((element) => {
+        element.dataset.i18nAttr.split(",").forEach((pair) => {
+          const [attr, key] = pair.split(":");
+          if (dictionary[key]) element.setAttribute(attr, dictionary[key]);
+        });
+      });
+
+      langButtons.forEach((button) => {
+        const active = button.dataset.lang === lang;
+        button.classList.toggle("active", active);
+        button.setAttribute("aria-pressed", String(active));
+      });
+
+      localStorage.setItem("palaunet2-lang", lang);
+    }
+
+    menuToggle.addEventListener("click", () => {
+      navMenu.classList.toggle("open");
+      const lang = localStorage.getItem("palaunet2-lang") || "ca";
+      const key = navMenu.classList.contains("open") ? "close_menu" : "open_menu";
+      menuToggle.setAttribute("aria-label", translations[lang][key]);
+    });
+
+    navMenu.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => navMenu.classList.remove("open"));
+    });
+
+    langButtons.forEach((button) => {
+      button.addEventListener("click", () => setLanguage(button.dataset.lang));
+    });
+
+    setLanguage(localStorage.getItem("palaunet2-lang") || "ca");
+  </script>
+</body>
+</html>
