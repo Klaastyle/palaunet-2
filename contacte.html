@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contacte | Palaunet</title>
+  <meta name="description" content="Contacta amb Palaunet per demanar pressupost de neteja professional per a empreses, comunitats, locals, pàrquings i particulars." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@500;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary: #21409a;
+      --primary-dark: #102a78;
+      --accent: #7135a2;
+      --sky: #7f9fd3;
+      --ink: #17264b;
+      --muted: #64748b;
+      --line: #dbe3f4;
+      --light: #f6f8fd;
+      --white: #ffffff;
+      --whatsapp: #25d366;
+      --shadow: 0 24px 60px rgba(16, 42, 120, 0.16);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Roboto", Arial, sans-serif;
+      color: var(--ink);
+      background: var(--light);
+      line-height: 1.65;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font: inherit; }
+    .container { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
+
+    .topbar {
+      background: var(--primary-dark);
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 14px;
+    }
+
+    .topbar-inner {
+      min-height: 46px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .topbar-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .topbar-list a,
+    .topbar-list span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .topbar i { color: var(--sky); }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: 0 12px 34px rgba(16, 42, 120, 0.08);
+    }
+
+    .nav {
+      min-height: 88px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .brand { width: 205px; flex: 0 0 auto; }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-family: "Fira Sans", sans-serif;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 0 0 auto;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      min-height: 56px;
+      padding: 15px 26px;
+      border: 0;
+      border-radius: 999px;
+      font-family: "Fira Sans", sans-serif;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease, background 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      filter: brightness(1.08);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--white);
+      box-shadow: 0 16px 30px rgba(113, 53, 162, 0.25);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 0 0 6px rgba(113, 53, 162, 0.14), 0 22px 46px rgba(113, 53, 162, 0.42);
+    }
+
+    .btn-blue {
+      background: var(--primary);
+      color: var(--white);
+      box-shadow: 0 16px 30px rgba(33, 64, 154, 0.24);
+    }
+
+    .btn-blue:hover {
+      box-shadow: 0 0 0 6px rgba(33, 64, 154, 0.14), 0 22px 46px rgba(33, 64, 154, 0.42);
+    }
+
+    .btn-call {
+      min-height: 50px;
+      padding: 13px 18px;
+      background: var(--primary);
+      color: var(--white);
+      box-shadow: 0 14px 28px rgba(33, 64, 154, 0.18);
+    }
+
+    .btn-call:hover {
+      box-shadow: 0 0 0 6px rgba(33, 64, 154, 0.14), 0 20px 40px rgba(33, 64, 154, 0.36);
+    }
+
+    .btn-whatsapp {
+      background: var(--whatsapp);
+      color: var(--white);
+      box-shadow: 0 18px 36px rgba(37, 211, 102, 0.34);
+    }
+
+    .btn-whatsapp:hover {
+      box-shadow: 0 0 0 7px rgba(37, 211, 102, 0.16), 0 24px 50px rgba(37, 211, 102, 0.45);
+    }
+
+    .contact-hero {
+      position: relative;
+      overflow: hidden;
+      color: var(--white);
+      background:
+        linear-gradient(90deg, rgba(16, 42, 120, 0.96), rgba(33, 64, 154, 0.76), rgba(113, 53, 162, 0.42)),
+        url("parking-palaunet.jfif") center/cover;
+    }
+
+    .contact-hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -120px -180px auto;
+      width: 520px;
+      height: 520px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.14);
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      min-height: 650px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 420px;
+      align-items: center;
+      gap: 70px;
+      padding: 76px 0;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 14px;
+      font-family: "Fira Sans", sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+      color: #cddcff;
+    }
+
+    .kicker::before {
+      content: "";
+      width: 38px;
+      height: 3px;
+      border-radius: 999px;
+      background: currentColor;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      max-width: 780px;
+      margin-bottom: 24px;
+      font-family: "Fira Sans", sans-serif;
+      font-size: clamp(46px, 6vw, 82px);
+      line-height: 1.02;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .hero-text {
+      max-width: 650px;
+      margin-bottom: 34px;
+      font-size: 20px;
+      color: rgba(255, 255, 255, 0.88);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .response-card {
+      border-radius: 24px;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.95);
+      color: var(--ink);
+      box-shadow: var(--shadow);
+    }
+
+    .response-card h2 {
+      margin-bottom: 14px;
+      font-family: "Fira Sans", sans-serif;
+      font-size: 30px;
+      color: var(--primary-dark);
+      line-height: 1.16;
+    }
+
+    .response-list {
+      margin: 24px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 14px;
+    }
+
+    .response-list li {
+      display: flex;
+      gap: 12px;
+      font-weight: 700;
+    }
+
+    .response-list i {
+      margin-top: 5px;
+      color: var(--accent);
+    }
+
+    .contact-section {
+      padding: 88px 0;
+      background: var(--white);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 54px;
+      align-items: start;
+    }
+
+    .contact-panel,
+    .form-panel {
+      border-radius: 24px;
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .contact-panel {
+      overflow: hidden;
+    }
+
+    .contact-image {
+      height: 260px;
+      background: url("empresa-palaunet.jfif") center 36%/cover;
+    }
+
+    .contact-content {
+      padding: 34px;
+    }
+
+    .contact-content h2,
+    .form-panel h2 {
+      margin-bottom: 12px;
+      font-family: "Fira Sans", sans-serif;
+      font-size: 34px;
+      line-height: 1.16;
+      color: var(--primary-dark);
+    }
+
+    .contact-content p,
+    .form-panel p {
+      color: var(--muted);
+    }
+
+    .contact-methods {
+      display: grid;
+      gap: 14px;
+      margin: 26px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .contact-methods a,
+    .contact-methods span {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--light);
+      font-weight: 800;
+    }
+
+    .contact-methods i {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--primary);
+      color: var(--white);
+    }
+
+    .form-panel {
+      padding: 34px;
+    }
+
+    .form-grid {
+      display: grid;
+      gap: 16px;
+      margin-top: 26px;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      min-height: 54px;
+      padding: 0 16px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      outline: 0;
+      color: var(--ink);
+      background: var(--light);
+    }
+
+    .field textarea {
+      min-height: 130px;
+      padding-top: 14px;
+      resize: vertical;
+    }
+
+    .form-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      z-index: 60;
+      width: 62px;
+      height: 62px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--whatsapp);
+      color: var(--white);
+      font-size: 34px;
+      box-shadow: 0 18px 36px rgba(37, 211, 102, 0.34);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .whatsapp-float:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 22px 42px rgba(37, 211, 102, 0.42);
+    }
+
+    @media (max-width: 940px) {
+      .topbar-inner { justify-content: center; }
+      .topbar-note { display: none; }
+      .nav { min-height: 76px; }
+      .brand { width: 176px; }
+      .nav-links { gap: 16px; }
+      .nav-actions { display: none; }
+      .hero-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-grid {
+        min-height: auto;
+        padding: 60px 0 74px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container { width: min(100% - 28px, 1180px); }
+      .topbar-list { justify-content: center; gap: 10px 16px; }
+      .nav-links { display: none; }
+      h1 { font-size: 42px; }
+      .hero-actions,
+      .form-actions {
+        align-items: stretch;
+        flex-direction: column;
+      }
+      .btn { width: 100%; }
+      .response-card,
+      .contact-content,
+      .form-panel { padding: 26px; }
+      .contact-section { padding: 66px 0; }
+      .whatsapp-float {
+        right: 16px;
+        bottom: 16px;
+        width: 56px;
+        height: 56px;
+        font-size: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <div class="topbar-note"><i class="fa-solid fa-circle-info"></i><span>Palaunet cuida els teus espais amb neteja professional.</span></div>
+      <ul class="topbar-list">
+        <li><a href="tel:630162194"><i class="fa-solid fa-phone"></i> 630 16 21 94</a></li>
+        <li><a href="tel:678480010"><i class="fa-solid fa-phone"></i> 678 48 00 10</a></li>
+        <li><a href="mailto:info@palaunet.cat"><i class="fa-solid fa-envelope"></i> info@palaunet.cat</a></li>
+        <li><span><i class="fa-solid fa-clock"></i> Dl-Dv: 8:00 - 19:00</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <header class="header">
+    <div class="container nav">
+      <a href="index.html" class="brand" aria-label="Palaunet">
+        <img src="Palaunet.png" alt="Logo de Palaunet" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Inici</a></li>
+        <li><a href="index.html#empresa">Empresa</a></li>
+        <li><a href="index.html#servicios">Serveis</a></li>
+        <li><a href="index.html#productos">Productes</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a class="btn btn-whatsapp" href="https://wa.me/34630162194" target="_blank" rel="noopener">WhatsApp <i class="fa-brands fa-whatsapp"></i></a>
+        <a class="btn btn-call" href="tel:630162194">630 16 21 94 <i class="fa-solid fa-phone"></i></a>
+        <a class="btn btn-call" href="tel:678480010">678 48 00 10 <i class="fa-solid fa-phone"></i></a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="contact-hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="kicker">Resposta ràpida</p>
+          <h1>Explica'ns què necessites i et responem amb una proposta clara.</h1>
+          <p class="hero-text">Neteges puntuals o recurrents per a empreses, comunitats, locals, pàrquings i particulars. Dona'ns quatre dades i activem el servei.</p>
+          <div class="hero-actions">
+            <a class="btn btn-whatsapp" href="https://wa.me/34630162194" target="_blank" rel="noopener">Escriure per WhatsApp <i class="fa-brands fa-whatsapp"></i></a>
+            <a class="btn btn-primary" href="tel:630162194">Trucar 630 16 21 94 <i class="fa-solid fa-phone"></i></a>
+            <a class="btn btn-primary" href="tel:678480010">Trucar 678 48 00 10 <i class="fa-solid fa-phone"></i></a>
+          </div>
+        </div>
+        <aside class="response-card">
+          <h2>Per pressupostar millor</h2>
+          <p>Si ens indiques espai, horari preferit i freqüència, podem orientar-te molt més ràpid.</p>
+          <ul class="response-list">
+            <li><i class="fa-solid fa-check"></i><span>Visita o valoració inicial</span></li>
+            <li><i class="fa-solid fa-check"></i><span>Proposta adaptada al teu espai</span></li>
+            <li><i class="fa-solid fa-check"></i><span>Servei amb personal i materials adequats</span></li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="contact-section">
+      <div class="container contact-grid">
+        <aside class="contact-panel">
+          <div class="contact-image" role="img" aria-label="Equip Palaunet treballant"></div>
+          <div class="contact-content">
+            <h2>Contacte directe</h2>
+            <p>Tria el canal més còmode. WhatsApp és la via més ràpida si vols enviar fotos de l'espai o explicar el servei.</p>
+            <ul class="contact-methods">
+              <li><a href="https://wa.me/34630162194" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> 630 16 21 94</a></li>
+              <li><a href="tel:630162194"><i class="fa-solid fa-phone"></i> Trucar al 630 16 21 94</a></li>
+              <li><a href="tel:678480010"><i class="fa-solid fa-phone"></i> Trucar al 678 48 00 10</a></li>
+              <li><a href="mailto:info@palaunet.cat"><i class="fa-solid fa-envelope"></i> info@palaunet.cat</a></li>
+              <li><span><i class="fa-solid fa-clock"></i> Dl-Dv: 8:00 - 19:00</span></li>
+            </ul>
+          </div>
+        </aside>
+
+        <section class="form-panel">
+          <h2>Demanar pressupost</h2>
+          <p>Omple el formulari i s'obrirà el teu correu amb les dades preparades per enviar a Palaunet.</p>
+          <form class="form-grid" action="mailto:info@palaunet.cat" method="post" enctype="text/plain">
+            <div class="field">
+              <label for="service">Servei</label>
+              <select id="service" name="servei">
+                <option>Oficines i empreses</option>
+                <option>Comunitats</option>
+                <option>Naus industrials</option>
+                <option>Locals comercials</option>
+                <option>Pisos i cases</option>
+                <option>Pàrquings</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="name">Nom</label>
+              <input id="name" name="nom" type="text" placeholder="El teu nom" />
+            </div>
+            <div class="field">
+              <label for="phone">Telèfon</label>
+              <input id="phone" name="telefon" type="tel" placeholder="630 16 21 94 / 678 48 00 10" />
+            </div>
+            <div class="field">
+              <label for="message">Què necessites?</label>
+              <textarea id="message" name="missatge" placeholder="Tipus d'espai, metres aproximats, freqüència i horari preferit"></textarea>
+            </div>
+            <div class="form-actions">
+              <button class="btn btn-blue" type="submit">Enviar missatge <i class="fa-solid fa-paper-plane"></i></button>
+              <a class="btn btn-whatsapp" href="https://wa.me/34630162194" target="_blank" rel="noopener">WhatsApp <i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+          </form>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <a class="whatsapp-float" href="https://wa.me/34630162194" target="_blank" rel="noopener" aria-label="Contactar per WhatsApp al 630 16 21 94">
+    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+  </a>
+</body>
+</html>

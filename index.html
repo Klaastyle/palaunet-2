@@ -206,14 +206,20 @@
       font-size: 14px;
       font-weight: 800;
       cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease, background 0.2s ease;
     }
 
-    .btn:hover { transform: translateY(-2px); }
+    .btn:hover {
+      transform: translateY(-3px);
+      filter: brightness(1.08);
+    }
     .btn-primary { background: var(--accent); color: var(--white); box-shadow: 0 16px 30px rgba(113, 53, 162, 0.25); }
     .btn-secondary { background: var(--primary); color: var(--white); box-shadow: 0 16px 30px rgba(33, 64, 154, 0.24); }
     .btn-white { background: var(--white); color: var(--primary); }
     .btn-link { min-height: auto; padding: 0; color: var(--accent); background: transparent; border-radius: 0; }
+    .btn-primary:hover { box-shadow: 0 0 0 6px rgba(113, 53, 162, 0.14), 0 22px 46px rgba(113, 53, 162, 0.42); }
+    .btn-secondary:hover { box-shadow: 0 0 0 6px rgba(33, 64, 154, 0.14), 0 22px 46px rgba(33, 64, 154, 0.42); }
+    .btn-white:hover { box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.22), 0 22px 46px rgba(255, 255, 255, 0.32); }
 
     .hero {
       position: relative;
@@ -452,9 +458,9 @@
 
     .image-box-small {
       position: absolute;
-      right: 0;
-      bottom: 0;
-      width: 58%;
+      right: -26px;
+      bottom: -44px;
+      width: 48%;
       border: 14px solid var(--white);
       border-radius: 22px;
       overflow: hidden;
@@ -462,6 +468,7 @@
     }
 
     .image-box img { width: 100%; height: 100%; object-fit: cover; }
+    .image-box-main img { object-position: center 34%; }
 
     .rating-badge {
       position: absolute;
@@ -768,6 +775,28 @@
       flex-wrap: wrap;
     }
 
+    .whatsapp-float {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      z-index: 60;
+      width: 62px;
+      height: 62px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #25d366;
+      color: var(--white);
+      font-size: 34px;
+      box-shadow: 0 18px 36px rgba(37, 211, 102, 0.34);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .whatsapp-float:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 22px 42px rgba(37, 211, 102, 0.42);
+    }
+
     @media (max-width: 1080px) {
       .topbar-inner { justify-content: center; text-align: center; }
       .topbar-note { display: none; }
@@ -843,6 +872,13 @@
         bottom: auto;
         width: 100%;
       }
+      .whatsapp-float {
+        right: 16px;
+        bottom: 16px;
+        width: 56px;
+        height: 56px;
+        font-size: 30px;
+      }
       .stat-item { border-right: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.12); }
       .footer { margin-top: 70px; }
     }
@@ -857,6 +893,7 @@
       </div>
       <ul class="topbar-list">
         <li><a href="tel:630162194"><i class="fa-solid fa-phone"></i> 630 16 21 94</a></li>
+        <li><a href="tel:678480010"><i class="fa-solid fa-phone"></i> 678 48 00 10</a></li>
         <li><a href="mailto:info@palaunet.cat"><i class="fa-solid fa-envelope"></i> info@palaunet.cat</a></li>
         <li><span><i class="fa-solid fa-clock"></i> <span data-i18n="hours">Dl-Dv: 8:00 - 19:00</span></span></li>
       </ul>
@@ -874,7 +911,7 @@
         <li><a href="#servicios" data-i18n="nav_services">Serveis</a></li>
         <li><a href="#metodo" data-i18n="nav_method">Mètode</a></li>
         <li><a href="#productos" data-i18n="nav_products">Productes</a></li>
-        <li><a href="#contacto" data-i18n="nav_contact">Contacte</a></li>
+        <li><a href="contacte.html" data-i18n="nav_contact">Contacte</a></li>
       </ul>
       <div class="nav-actions">
         <div class="lang-switch" aria-label="Selector d'idioma" data-i18n-attr="aria-label:language_selector">
@@ -882,7 +919,7 @@
           <button type="button" data-lang="es" aria-pressed="false">CAST</button>
           <button type="button" data-lang="en" aria-pressed="false">EN</button>
         </div>
-        <a class="btn btn-primary" href="#contacto" data-i18n="contact_us">Contacta amb nosaltres</a>
+        <a class="btn btn-primary" href="contacte.html" data-i18n="contact_us">Contacta amb nosaltres</a>
         <button class="menu-toggle" id="menuToggle" type="button" aria-label="Obrir menú" data-i18n-attr="aria-label:open_menu">
           <i class="fa-solid fa-bars"></i>
         </button>
@@ -898,8 +935,9 @@
           <h1><span data-i18n="hero_title_1">Neteja integral</span> <span data-i18n="hero_title_2">amb un estàndard constant de qualitat.</span></h1>
           <p class="hero-text" data-i18n="hero_text">Solucions per a empreses, comunitats, oficines, locals, pàrquings i particulars. Personal qualificat, horaris adaptats i seguiment del servei.</p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#contacto"><span data-i18n="contact_us">Contacta amb nosaltres</span> <i class="fa-solid fa-arrow-right"></i></a>
+            <a class="btn btn-primary" href="contacte.html"><span data-i18n="contact_us">Contacta amb nosaltres</span> <i class="fa-solid fa-arrow-right"></i></a>
             <a class="hero-phone" href="tel:630162194"><i class="fa-solid fa-phone"></i><span>630 16 21 94</span></a>
+            <a class="hero-phone" href="tel:678480010"><i class="fa-solid fa-phone"></i><span>678 48 00 10</span></a>
           </div>
           <div class="hero-badges">
             <div class="hero-badge"><strong>250+</strong><span data-i18n="stat_clients">Clients satisfets</span></div>
@@ -931,7 +969,7 @@
               </div>
               <div class="field">
                 <label for="phone" data-i18n="form_phone">Telèfon</label>
-                <input id="phone" name="telefon" type="tel" placeholder="630 16 21 94" />
+                <input id="phone" name="telefon" type="tel" placeholder="630 16 21 94 / 678 48 00 10" />
               </div>
               <div class="field">
                 <label for="message" data-i18n="form_message">Missatge</label>
@@ -948,7 +986,7 @@
       <div class="container about-grid">
         <div class="image-box">
           <div class="image-box-main">
-            <img src="https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?auto=format&fit=crop&w=1100&q=80" alt="Equip professional de neteja" data-i18n-attr="alt:about_img_alt" />
+            <img src="empresa-palaunet.jfif" alt="Equip professional de neteja de Palaunet" data-i18n-attr="alt:about_img_alt" />
           </div>
           <div class="image-box-small">
             <img src="https://images.unsplash.com/photo-1563453392212-326f5e854473?auto=format&fit=crop&w=900&q=80" alt="Material professional de neteja" data-i18n-attr="alt:material_img_alt" />
@@ -990,16 +1028,16 @@
               <div class="service-icon"><i class="fa-solid fa-briefcase"></i></div>
               <h3 data-i18n="service_offices">Oficines i empreses</h3>
               <p data-i18n="service_offices_desc">Neteja diària o periòdica d'entorns de treball per mantenir una imatge professional, ordenada i higiènica.</p>
-              <a class="btn btn-link" href="#contacto"><span data-i18n="contact">Contactar</span> <i class="fa-solid fa-arrow-right"></i></a>
+              <a class="btn btn-link" href="contacte.html"><span data-i18n="contact">Contactar</span> <i class="fa-solid fa-arrow-right"></i></a>
             </div>
           </article>
           <article class="service-card">
-            <div class="service-media"><img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=900&q=80" alt="" /></div>
+            <div class="service-media"><img src="comunitats.webp" alt="" /></div>
             <div class="service-body">
               <div class="service-icon"><i class="fa-solid fa-people-roof"></i></div>
               <h3 data-i18n="service_communities">Comunitats</h3>
               <p data-i18n="service_communities_desc">Manteniment d'escales, ascensors, replans, vidres i zones comunes amb supervisió constant.</p>
-              <a class="btn btn-link" href="#contacto"><span data-i18n="contact">Contactar</span> <i class="fa-solid fa-arrow-right"></i></a>
+              <a class="btn btn-link" href="contacte.html"><span data-i18n="contact">Contactar</span> <i class="fa-solid fa-arrow-right"></i></a>
             </div>
           </article>
           <article class="service-card">
@@ -1008,16 +1046,16 @@
               <div class="service-icon"><i class="fa-solid fa-industry"></i></div>
               <h3 data-i18n="service_industrial">Naus industrials</h3>
               <p data-i18n="service_industrial_desc">Neteja de grans superfícies amb maquinària professional i productes adequats per a cada paviment.</p>
-              <a class="btn btn-link" href="#contacto"><span data-i18n="contact">Contactar</span> <i class="fa-solid fa-arrow-right"></i></a>
+              <a class="btn btn-link" href="contacte.html"><span data-i18n="contact">Contactar</span> <i class="fa-solid fa-arrow-right"></i></a>
             </div>
           </article>
           <article class="service-card">
-            <div class="service-media"><img src="https://images.unsplash.com/photo-1604719312566-8912e9227c6a?auto=format&fit=crop&w=900&q=80" alt="" /></div>
+            <div class="service-media"><img src="locals-comercials.jpg" alt="" /></div>
             <div class="service-body">
               <div class="service-icon"><i class="fa-solid fa-store"></i></div>
               <h3 data-i18n="service_shops">Locals comercials</h3>
               <p data-i18n="service_shops_desc">Serveis per a comerços, restaurants, centres d'oci i espais d'atenció al públic.</p>
-              <a class="btn btn-link" href="#contacto"><span data-i18n="contact">Contactar</span> <i class="fa-solid fa-arrow-right"></i></a>
+              <a class="btn btn-link" href="contacte.html"><span data-i18n="contact">Contactar</span> <i class="fa-solid fa-arrow-right"></i></a>
             </div>
           </article>
           <article class="service-card">
@@ -1026,16 +1064,16 @@
               <div class="service-icon"><i class="fa-solid fa-house"></i></div>
               <h3 data-i18n="service_homes">Pisos i cases</h3>
               <p data-i18n="service_homes_desc">Neteja domèstica continuada o esporàdica, amb horaris flexibles i un tracte proper.</p>
-              <a class="btn btn-link" href="#contacto"><span data-i18n="contact">Contactar</span> <i class="fa-solid fa-arrow-right"></i></a>
+              <a class="btn btn-link" href="contacte.html"><span data-i18n="contact">Contactar</span> <i class="fa-solid fa-arrow-right"></i></a>
             </div>
           </article>
           <article class="service-card">
-            <div class="service-media"><img src="https://images.unsplash.com/photo-1506521781263-d8422e82f27a?auto=format&fit=crop&w=900&q=80" alt="" /></div>
+            <div class="service-media"><img src="parking-palaunet.jfif" alt="" /></div>
             <div class="service-body">
               <div class="service-icon"><i class="fa-solid fa-square-parking"></i></div>
               <h3 data-i18n="service_parking">Pàrquings</h3>
               <p data-i18n="service_parking_desc">Neteja especialitzada de garatges i pàrquings, incloent taques, pols, accessos i zones de pas.</p>
-              <a class="btn btn-link" href="#contacto"><span data-i18n="contact">Contactar</span> <i class="fa-solid fa-arrow-right"></i></a>
+              <a class="btn btn-link" href="contacte.html"><span data-i18n="contact">Contactar</span> <i class="fa-solid fa-arrow-right"></i></a>
             </div>
           </article>
         </div>
@@ -1093,7 +1131,7 @@
             <h2 data-i18n="cta_title">Necessites un servei de neteja professional?</h2>
             <p data-i18n="cta_desc">Explica'ns què necessites i prepararem una proposta adaptada al teu espai, horaris i freqüència.</p>
           </div>
-          <a class="btn btn-white" href="mailto:info@palaunet.cat"><span data-i18n="contact_us">Contacta amb nosaltres</span> <i class="fa-solid fa-arrow-right"></i></a>
+          <a class="btn btn-white" href="contacte.html"><span data-i18n="contact_us">Contacta amb nosaltres</span> <i class="fa-solid fa-arrow-right"></i></a>
         </div>
       </div>
     </section>
@@ -1111,7 +1149,7 @@
           <li><a href="#empresa" data-i18n="about_us">Qui som</a></li>
           <li><a href="#metodo" data-i18n="nav_method">Mètode</a></li>
           <li><a href="#productos" data-i18n="nav_products">Productes</a></li>
-          <li><a href="#contacto" data-i18n="nav_contact">Contacte</a></li>
+          <li><a href="contacte.html" data-i18n="nav_contact">Contacte</a></li>
         </ul>
       </div>
       <div>
@@ -1128,6 +1166,7 @@
         <h3 data-i18n="quick_contact">Contacte ràpid</h3>
         <ul>
           <li><i class="fa-solid fa-phone"></i><a href="tel:630162194">630 16 21 94</a></li>
+          <li><i class="fa-solid fa-phone"></i><a href="tel:678480010">678 48 00 10</a></li>
           <li><i class="fa-solid fa-envelope"></i><a href="mailto:info@palaunet.cat">info@palaunet.cat</a></li>
           <li><i class="fa-solid fa-clock"></i><span data-i18n="hours">Dl-Dv: 8:00 - 19:00</span></li>
         </ul>
@@ -1140,6 +1179,10 @@
       </div>
     </div>
   </footer>
+
+  <a class="whatsapp-float" href="https://wa.me/34630162194" target="_blank" rel="noopener" aria-label="Contactar per WhatsApp al 630 16 21 94">
+    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+  </a>
 
   <script>
     const translations = {
